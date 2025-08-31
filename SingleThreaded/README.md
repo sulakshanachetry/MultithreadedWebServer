@@ -1,134 +1,133 @@
 Single-Threaded Math Server & Client (Java)
-Project Overview
+===========================================
 
-A lightweight, single-threaded client-server application in Java.
-The Math Server processes basic arithmetic commands (ADD, SUB, MUL, DIV) sent by the Client, then returns the result.
-Communication uses Java's sockets and data streams for structured messaging.
+📖 Project Overview
+-------------------
 
-Features
+A lightweight **single-threaded client-server application in Java**.
 
-Math commands supported:
+*   The **Math Server** processes basic arithmetic commands (ADD, SUB, MUL, DIV) sent by the **Client** and returns the result.
+    
+*   Communication uses **Java Sockets** and **Data Streams** for structured messaging.
+    
+*   Designed to be minimal, easy to understand, and extendable.
+    
 
-ADD a b → a + b
+✨ Features
+----------
 
-SUB a b → a – b
+*   Supported Math Commands:
+    
+    *   ADD a b → a + b
+        
+    *   SUB a b → a – b
+        
+    *   MUL a b → a × b
+        
+    *   DIV a b → a ÷ b (with division-by-zero handling)
+        
+*   Graceful termination when client sends exit
+    
+*   **Single-threaded**: handles one client at a time
+    
+*   Uses DataInputStream & DataOutputStream for structured communication
+    
 
-MUL a b → a × b
+📂 Project Structure
+--------------------
 
-DIV a b → a ÷ b (with division-by-zero handling)
+Plain textANTLR4BashCC#CSSCoffeeScriptCMakeDartDjangoDockerEJSErlangGitGoGraphQLGroovyHTMLJavaJavaScriptJSONJSXKotlinLaTeXLessLuaMakefileMarkdownMATLABMarkupObjective-CPerlPHPPowerShell.propertiesProtocol BuffersPythonRRubySass (Sass)Sass (Scss)SchemeSQLShellSwiftSVGTSXTypeScriptWebAssemblyYAMLXML`   .  ├── MathServer.java  ├── MathClient.java  └── README.md   `
 
-Graceful termination when client sends exit
+▶️ How to Run
+-------------
 
-Single-threaded: handles one client at a time
+### Compile
 
-Uses DataInputStream & DataOutputStream for structured communication
+Plain textANTLR4BashCC#CSSCoffeeScriptCMakeDartDjangoDockerEJSErlangGitGoGraphQLGroovyHTMLJavaJavaScriptJSONJSXKotlinLaTeXLessLuaMakefileMarkdownMATLABMarkupObjective-CPerlPHPPowerShell.propertiesProtocol BuffersPythonRRubySass (Sass)Sass (Scss)SchemeSQLShellSwiftSVGTSXTypeScriptWebAssemblyYAMLXML`   javac MathServer.java MathClient.java   `
 
-Clean, minimal code with:
+### Run Server
 
-ServerSocket
+Plain textANTLR4BashCC#CSSCoffeeScriptCMakeDartDjangoDockerEJSErlangGitGoGraphQLGroovyHTMLJavaJavaScriptJSONJSXKotlinLaTeXLessLuaMakefileMarkdownMATLABMarkupObjective-CPerlPHPPowerShell.propertiesProtocol BuffersPythonRRubySass (Sass)Sass (Scss)SchemeSQLShellSwiftSVGTSXTypeScriptWebAssemblyYAMLXML`   java MathServer   `
 
-Socket
+### Run Client (in another terminal)
 
-Java I/O and networking APIs
+Plain textANTLR4BashCC#CSSCoffeeScriptCMakeDartDjangoDockerEJSErlangGitGoGraphQLGroovyHTMLJavaJavaScriptJSONJSXKotlinLaTeXLessLuaMakefileMarkdownMATLABMarkupObjective-CPerlPHPPowerShell.propertiesProtocol BuffersPythonRRubySass (Sass)Sass (Scss)SchemeSQLShellSwiftSVGTSXTypeScriptWebAssemblyYAMLXML`   java MathClient   `
 
-Project Structure
-.
-├── MathServer.java
-├── MathClient.java
-└── README.md
+### Example Usage
 
-How to Run
-javac MathServer.java MathClient.java
+Plain textANTLR4BashCC#CSSCoffeeScriptCMakeDartDjangoDockerEJSErlangGitGoGraphQLGroovyHTMLJavaJavaScriptJSONJSXKotlinLaTeXLessLuaMakefileMarkdownMATLABMarkupObjective-CPerlPHPPowerShell.propertiesProtocol BuffersPythonRRubySass (Sass)Sass (Scss)SchemeSQLShellSwiftSVGTSXTypeScriptWebAssemblyYAMLXML`   ADD 5 3  DIV 7 0  exit   `
 
-Run Server
-java MathServer
+📝 Notes: Socket Programming Insights
+-------------------------------------
 
-Run Client (in a different terminal)
-java MathClient
+*   **Socket programming** enables communication between programs (same or different machines).
+    
+*   A **socket** is an endpoint for sending/receiving data.
+    
+    *   ServerSocket → used by the server to listen for clients.
+        
+    *   Socket → used by the client to connect to the server.
+        
 
+### 🔗 Basic Steps (TCP)
 
-Then, use commands like:
+1.  **Server** creates a ServerSocket on a port.
+    
+2.  Server calls accept() → waits for client.
+    
+3.  **Client** creates a Socket(address, port) → connects to server.
+    
+4.  Communication happens using **I/O streams**.
+    
+5.  Always **close sockets** when done (this closes streams too).
+    
 
-ADD 5 3
-DIV 7 0
-exit
+### 📡 Communication Uses Streams
 
-Notes:
-Socket Programming Insights
+*   InputStream → data coming **from client to server**
+    
+*   OutputStream → data going **from server to client**
+    
+*   Can be wrapped in higher-level classes for convenience.
+    
 
-Socket programming enables communication between programs – whether on the same or different machines 
+🔑 Classes Used
+---------------
 
-A socket is an endpoint for sending/receiving data. The java.net.Socket class is used by clients, while ServerSocket listens for incoming connections from clients 
-
-Steps in Java (TCP):
-
-Server creates a ServerSocket on a port.
-
-Server calls accept() to await a client.
-
-Client uses Socket(address, port) to connect.
-
-Once connected, communication happens via I/O streams from the sockets 
-
-After you're done, always close the socket; this automatically closes its input/output streams too 
-
-Communication uses streams:
-
-InputStream (client → server)
-
-OutputStream (server → client)
-
-These can be wrapped by higher-level readers or writers for easier text/binary handling
-
-Classes used:
-1. ServerSocket
-
-Used in server
-
-Listens on a port and waits for clients.
-
-When a client connects, it gives a Socket.
-
-2. Socket
-
-Represents the actual link between client ↔ server.
-
-3. DataInputStream
-
-Reads data coming from the other side.
-
-Example: reads commands like "ADD 5 3".
-
-4. DataOutputStream
-
-Sends data to the other side.
-
-Example: sends results like "Result: 8".
-
-5. System.in
-
-Used in client
-
-Standard input (keyboard).
-
-6. BufferedReader
-
-Used in client
-
-Makes reading text from keyboard easier.
-
-7. String methods
-
-split() → breaks input into parts (ADD, 5, 3).
-
-equalsIgnoreCase() → checks exit or EXIT.
-
-parseInt() → converts "5" into number 5.
+*   **ServerSocket** → Listens on a port, waits for clients.
+    
+*   **Socket** → Actual link between client ↔ server.
+    
+*   **DataInputStream** → Reads structured data from the other side.
+    
+*   **DataOutputStream** → Sends structured data to the other side.
+    
+*   **System.in** → Reads user input (keyboard).
+    
+*   **BufferedReader** → Easier way to read text input from keyboard.
+    
+*   **String methods**:
+    
+    *   split() → breaks input (ADD 5 3 → \["ADD","5","3"\])
+        
+    *   equalsIgnoreCase() → checks commands like exit or EXIT
+        
+    *   parseInt() → converts "5" → 5
+        
 
 📌 Super-Simple Flow
+--------------------
 
-Client: User types → read from keyboard → send to server.
+**Client**
 
-Server: Receives command → does math → sends result.
+*   User types command → Read from keyboard → Send to server
+    
 
-Client: Receives result → shows on screen.
+**Server**
+
+*   Receives command → Performs math → Sends result
+    
+
+**Client**
+
+*   Receives result → Displays on screen
